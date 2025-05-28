@@ -1,3 +1,8 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +17,7 @@
 
 <!-- Formulaire pour ajouter un livre -->
 <h2>Add a New Book</h2>
-<form action="add_book.php" methode="POST">
+<form action="add_book.php" method="POST">
     <input type="text" name="title" placeholder="Book Title" required>
     <input type="text" name="genre" placeholder="Genre" >
     <input type="number" name="year" placeholder="Publication Year">
@@ -21,7 +26,7 @@
 
 <!-- Formulaire pour ajouter un auteur -->
 <h2>Add a New Author</h2>
-<form action="add_autohr.php" method="POST">
+<form action="add_author.php" method="POST">
     <input type="text" name="name" placeholder="Author Name" required>
     <button type="submit">Add Author</button>
 </form>
@@ -38,15 +43,18 @@
 <h2>Books List</h2>
 <?php
 include "db.php";
-$result = $conn->query("SELECT * FROM Books");
+
+$result = $conn->query("SELECT * FROM books");
+
 while ($row = $result->fetch_assoc()) {
-    echo "<p>" . $row['title'] . " - " . $row['genre'] . " (" . $row['publication_year'] . ") ";
-    echo "<a href='delete_book.php?id=" . $row['book_id'] . "'>Delete</a> | ";
-    echo "<a href='update_book.php?id=" . $row['book_id'] . "'>Update</a></p>";
+    echo "<p>" . htmlspecialchars($row['title']) . " - " . htmlspecialchars($row['genre']) . " (" . $row['published_year'] . ") ";
+    echo "<a href='delete_book.php?id=" . $row['id'] . "'>Delete</a> | ";
+    echo "<a href='update_book.php?id=" . $row['id'] . "'>Update</a></p>";
 
 }
 ?>
 
 
 </body>
-<html>
+</html>
+
