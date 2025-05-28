@@ -4,11 +4,12 @@ include "db.php";
 
 $title = $_POST["title"];
 $genre = $_POST["genre"];
+$author = $_POST["author"];
 $year = $_POST["year"];
 
-$sql = "INSERT INTO Books (title, genre, publication_year) VALUES ('$title', '$genre', $year)";
+$sql = "INSERT INTO Books (title, author, genre, published_year) VALUES ('$title', '$author', '$genre', $year)";
 if ($conn->query($sql) === TRUE) {
-    echo "New Book added succesfuully";
+    echo "New Book added successfully";
 } else { 
     echo "Error: " .$sql . "<br>" . $conn ->error;
     

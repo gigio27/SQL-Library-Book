@@ -19,6 +19,7 @@ error_reporting(E_ALL);
 <h2>Add a New Book</h2>
 <form action="add_book.php" method="POST">
     <input type="text" name="title" placeholder="Book Title" required>
+    <input type="text" name="author" placeholder="Author" required>
     <input type="text" name="genre" placeholder="Genre" >
     <input type="number" name="year" placeholder="Publication Year">
     <button type="submit">Add Book</button>
